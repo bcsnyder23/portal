@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Feed Sign Up</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: rgb(120, 96, 64);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #formContainer {
+            background-color: white;
+            width: 100%;
+            max-width: 450px;
+            border: 12px solid #0d3d80;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .banner {
+            position: relative;
+            background-image: url('images/jesus_feeds_5000.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #closeBtn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: white;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            color: #333;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        #closeBtn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .banner-text {
+            color: white;
+            font-family: Georgia, serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 
+                         -1px -1px 0 rgba(0, 0, 0, 0.8), 
+                         1px -1px 0 rgba(0, 0, 0, 0.8), 
+                         -1px 1px 0 rgba(0, 0, 0, 0.8), 
+                         1px 1px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .banner-text h1 {
+            font-size: 34px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .banner-text h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .form-content {
+            padding: 25px 30px;
+            background-color: white;
+        }
+
+        .form-content h3 {
+            text-align: center;
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #000;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 15px 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .form-grid label, .form-grid .grid-label {
+            font-size: 16px;
+            color: #000;
+        }
+
+        .form-grid input[type="text"],
+        .form-grid input[type="password"],
+        .form-grid input[type="email"] {
+            width: 100%;
+            padding: 4px 8px;
+            border: 1px solid #999;
+            border-radius: 2px;
+            font-size: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .radio-group label {
+            margin-right: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            cursor: pointer;
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #000;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #e8e8e8;
+            border: 1px solid #777;
+            border-radius: 4px;
+            padding: 4px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #d8d8d8;
+        }
+
+        .footer {
+            display: flex;
+            background-color: #1a1a1a;
+            border-top: 3px solid white;
+            width: 100%;
+        }
+
+        .footer-item {
+            flex: 1;
+            border-right: 3px solid white;
+            overflow: hidden;
+        }
+
+        .footer-item:last-child {
+            border-right: none;
+        }
+
+        .footer-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #output {
+            margin-top: 20px;
+            color: white;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #output ul {
+            list-style-type: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+
+        #output li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="formContainer">
+        <div class="banner">
+            <button type="button" id="closeBtn">X</button>
+            <div class="banner-text">
+                <h1>Daily Feed</h1>
+                <h2>Scripture a Day</h2>
+            </div>
+        </div>
+
+        <form id="myForm" class="form-content">
+            <h3>Sign Up for Daily Scripture Feed</h3>
+            
+            <div class="form-grid">
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <span class="grid-label">Gender:</span>
+                <div class="radio-group">
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female" required>
+                    <label for="female">Female</label>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="newsletter" name="newsletter">
+                <label for="newsletter">Subscribe to newsletter</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="conditions" name="conditions" required>
+                <label for="conditions">I acknowledge the terms and conditions</label>
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        <div class="footer">
+            <div class="footer-item"><img src="images/old_testament.webp" alt="Old Testament"></div>
+            <div class="footer-item"><img src="images/new_testament.webp" alt="New Testament"></div>
+            <div class="footer-item"><img src="images/book_of_mormon.webp" alt="Book of Mormon"></div>
+            <div class="footer-item"><img src="images/doctrine_and_covenants.webp" alt="Doctrine and Covenants"></div>
+            <div class="footer-item"><img src="images/pearl_of_great_price.webp" alt="Pearl of Great Price"></div>
+        </div>
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        // Here is some Javascript to start looking forward to wdd131
+        document.getElementById("closeBtn").addEventListener("click", function () {
+            document.getElementById("formContainer").style.display = "none";
+         });
+        const form = document.getElementById('myForm');
+        const output = document.getElementById('output');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Stop form from actually submitting
+
+            const formData = new FormData(form);
+            const entries = [];
+
+            for (const [key, value] of formData.entries()) {
+                if (key == "password") {
+                    entries.push(`<strong>${key}</strong>: ${value} (you should probably encrypt the password)`);
+                } else {
+                    entries.push(`<strong>${key}</strong>: ${value}`);
+                }
+            }
+
+            output.innerHTML = `
+            <br>  
+            <h3>Here is the data that would be sent to the server:</h3>
+            <ul>
+                ${entries.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+            `;
+        });
+    </script>
+</body>
+
+</html>
